@@ -1,0 +1,22 @@
+/* div {
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+    /* visibility: hidden; */
+    /* display: none; */
+/* } */
+
+/* span {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+
+    display: inline-block */
+
+
+div {
+    margin: auto;
+    background-color: yellow;
+    background-repeat: no-repeat;
+    background-position: top;
+}
