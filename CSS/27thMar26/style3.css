@@ -1,0 +1,6 @@
+.navbar {
+    background-color: blueviolet;
+    /* width: 20px;
+    height: max-content; */
+    position: fixed;
+}

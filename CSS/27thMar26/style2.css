@@ -1,0 +1,35 @@
+.stat {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: static;
+}
+
+.rel {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    position: relative;
+    left: 100px;
+}
+
+.abs {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    position: absolute;
+}
+
+.fix {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: fixed;
+}
+
+.parent{
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border: 20x solid
+}

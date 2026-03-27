@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href = "style2.css">
+</head>
+<body>
+    <center>
+        <h2>Positions</h2>
+    </center>
+    <div class="stat">static</div>
+    <div class="rel">relative</div>
+    <div class="parent">
+        <div class="abs">absolute</div>
+    </div>
+    <div class="fix">fixed</div>
+</body>
+</html>
+
+<!-- 
+positions: used to place the html element at desired location
+
+position: static {by default every element has position static}
+
+position: relative
+directions: top bottom left right {moves the element from its current position depending on the directions given}
+
+position: absolute
+{it overlapss the element
+it depend on the nearest ancestor/parent}
+parent - body - position:relative
+child - .abs - position:absolute
+if no parent, takes body as reference
+
+position: fixed {fixed position even when we scroll the page}
+position: sticky {when an element reaches its boundary point, then the element become stick}
+-->
+
+
+<!-- 
+z-index: 
+it will place the elements in order
+it will place the stack order of an element
+
+highest z-index will be at the top
+-->
+
+
+<!-- 
+float: left right
+
+Flex(flex boX)
+its a one dimensional layout system
+here, arrange the html elements in either row-wise or column-wise
+
+
+Grid
+its a two dimensional layout system
+here, arrange the html elements in both directions row-wise column-wise
+
+-->
