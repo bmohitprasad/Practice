@@ -1,0 +1,32 @@
+.parent {
+    width: 700px;
+    height: 700px;
+    background-color: blueviolet;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: row-reverse; */ 
+}
+
+.child {
+    width: 60px;
+    height: 60px;
+    background-color: gold;
+    margin: 3px;
+    padding: 2px;
+}
+
+#child1 {
+    order: 1
+}
+
+#child2 {
+    flex-grow: 0;
+    flex-basis: 150px;
+}
+
+#child3 {
+    flex-grow: 0;
+    align-self: center;
+}
+
