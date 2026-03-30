@@ -1,0 +1,15 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: green;
+    position: fixed;
+}
+
+#Sitename {
+    display: flex;
+}
+
+#navigations {
+    display: flex;
+    justify-content: space-around;
+}
