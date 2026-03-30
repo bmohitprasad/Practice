@@ -1,15 +1,43 @@
-.navbar {
+.navi {
+    background-color: green;
     display: flex;
     justify-content: space-between;
-    background-color: green;
-    position: fixed;
+    /* position: fixed; */
+    width: auto;
+    padding: 10px;
+    color: white;
 }
 
-#Sitename {
+.navigations {
     display: flex;
 }
 
-#navigations {
+.nav-button {
+    padding: 2px;
+}
+
+.site-name {
+    padding: 2px;
+}
+
+.hero {
+    width: auto;
+    height: 300px;
+    background-image: url("https://i.pinimg.com/1200x/60/9b/9e/609b9e55c51475728f6b8d288fd0d400.jpg");
+    background-size: auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderNow {
+    display: flex;
+    width: fit-content;
+    background-color: white;
+    color: green;
+    border: 2px;
+    padding: 10px;
+    font-size: x-small;
+    border-radius: 10px;
 }
