@@ -1,10 +1,16 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .navi {
     background-color: green;
     display: flex;
     justify-content: space-between;
     /* position: fixed; */
     width: auto;
-    padding: 10px;
+    /* padding: 10px; */
     color: white;
 }
 
@@ -14,21 +20,28 @@
 
 .nav-button {
     padding: 2px;
+    margin: 10px;
 }
 
 .site-name {
-    padding: 2px;
+    padding: 10px;
 }
 
 .hero {
-    width: auto;
-    height: 300px;
+    max-width: 100%;
     background-image: url("https://i.pinimg.com/1200x/60/9b/9e/609b9e55c51475728f6b8d288fd0d400.jpg");
-    background-size: auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.f-o {
+    color: white;
+    text-shadow: h-shadow v-shadow;
 }
 
 .orderNow {
@@ -40,4 +53,17 @@
     padding: 10px;
     font-size: x-small;
     border-radius: 10px;
+}
+
+.part-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img1 {
+    max-width: 100%;
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("./pngtree-assorted-fruit-basket-png-image_13125619.png"); */
 }
