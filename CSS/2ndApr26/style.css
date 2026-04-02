@@ -1,0 +1,15 @@
+
+/* small mobile devices */
+@media (min-width: 320px) and (max-width: 374px) {
+    body {
+        background-color: blue;
+    }
+}
+
+/* medium mobile devices */
+@media (min-width: 375px) and (max-width: 424px) {
+    body {
+        background-color: orange;
+    }
+}
+
