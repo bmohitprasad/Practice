@@ -23,3 +23,14 @@ for (var i = 0; i < 3; i++) {
         console.log(i); // 3, 3, 3
     },1);
 }
+
+function outer() {
+    console.log(a); // undefined
+    var a = 5;
+    function inner() {
+        console.log(b); // undefined
+        var b = 10;
+    }
+    inner();
+}
+outer();
