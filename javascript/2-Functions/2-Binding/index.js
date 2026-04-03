@@ -70,3 +70,4 @@ const person6 = {
 }
 
 person6.greet()
+console.log("_________________________________________")
