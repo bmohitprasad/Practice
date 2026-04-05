@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master DOM & Events Demo</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        section { border: 2px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .box { padding: 20px; border: 1px solid black; margin: 10px; cursor: pointer; }
+        #div1 { background-color: lightgreen; }
+        #div2 { background-color: yellow; }
+        #div3 { background-color: orange; }
+        .list-item { color: blue; font-weight: bold; }
+        .highlight { background-color: #ffffd0; }
+        button { padding: 10px; cursor: pointer; margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+    <h1>DOM & Event Mastery Dashboard</h1>
+
+    <section id="access-section">
+        <h2 id="title">1. Access & Modify</h2>
+        <p class="list-item">This is item 1 (Class: list-item)</p>
+        <p class="list-item">This is item 2 (Class: list-item)</p>
+        <button id="modify-btn">Modify Above Content</button>
+    </section>
+
+    <section id="creation-section">
+        <h2>2. Dynamic Creation & One-Time Events</h2>
+        <div id="list-container"></div>
+    </section>
+
+    <section>
+        <h2>3. Event Propagation</h2>
+        <p>Check the Console (F12) to see the order of alerts/logs.</p>
+        <label><input type="checkbox" id="use-capture"> Use Capturing (Trickle Down)</label>
+        
+        <div id="div1" class="box">
+            Component 1 (Outer)
+            <div id="div2" class="box">
+                Component 2 (Middle)
+                <div id="div3" class="box">
+                    Component 3 (Inner - Click Me!)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // --- 1. ACCESSING & MODIFYING ---
+        const modifyBtn = document.getElementById("modify-btn");
+        
+        modifyBtn.addEventListener("click", () => {
+            // getElementById
+            document.getElementById("title").textContent = "Content Updated!";
+            
+            // getElementsByClassName
+            let items = document.getElementsByClassName("list-item");
+            items[0].style.color = "red";
+            
+            // querySelectorAll
+            let allParas = document.querySelectorAll(".list-item");
+            allParas.forEach(p => p.classList.add("highlight"));
+        });
+
+        // --- 2. DYNAMIC CREATION & REMOVAL ---
+        const listContainer = document.getElementById("list-container");
+        const customUI = document.createElement('ul');
+
+        for (let i = 1; i <= 5; i++) {
+            const newElement = document.createElement('li');
+            newElement.textContent = "Line " + i + " (Click to remove me)";
+            
+            // Demonstrating removeEventListener or simple removal
+            newElement.addEventListener('click', function handleRemove() {
+                console.log("Removing line " + i);
+                newElement.remove(); 
+            });
+            
+            customUI.appendChild(newElement);
+        }
+        listContainer.appendChild(customUI);
+
+        // --- 3. EVENT PROPAGATION (BUBBLING vs CAPTURING) ---
+        const d1 = document.querySelector("#div1");
+        const d2 = document.querySelector("#div2");
+        const d3 = document.querySelector("#div3");
+        const captureCheckbox = document.querySelector("#use-capture");
+
+        function setupEvents() {
+            // We remove old listeners first to toggle between Bubble/Capture
+            const useCapture = captureCheckbox.checked;
+            
+            // Clear and Re-add to demonstrate the difference
+            [d1, d2, d3].forEach((el, index) => {
+                // Using a named function so we can clean up if needed
+                const handler = (e) => {
+                    console.log(`Phase: ${useCapture ? 'Capturing' : 'Bubbling'} | Clicked: Component ${index + 1}`);
+                    alert(`Component ${index + 1} clicked (${useCapture ? 'Capturing' : 'Bubbling'})`);
+                };
+
+                // Remove existing to prevent stacking (standard practice)
+                el.onclick = null; 
+                
+                // The 3rd argument 'true' means Capture, 'false' (default) means Bubble
+                el.addEventListener("click", handler, useCapture);
+            });
+        }
+
+        // Initialize propagation logic
+        setupEvents();
+        captureCheckbox.addEventListener('change', () => {
+            alert("Propagation mode changed. Click the boxes again!");
+            location.reload(); // Refresh to clean event stack for demo clarity
+        });
+
+        // --- 4. EVENT OBJECT ---
+        document.addEventListener('keydown', (event) => {
+            console.log("Last key pressed on page: " + event.key);
+        });
+
+    </script>
+</body>
+</html>
