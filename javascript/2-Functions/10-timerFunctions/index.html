@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .div {
+            text-align: center; padding: 20px; border: 2px solid #333; width: 300px;
+        }
+    </style>
+
 </head>
 <body>
-    <div style="text-align: center; padding: 20px; border: 2px solid #333; width: 300px;">
-    <h2 id="display">10</h2>
-    <p id="status">System Active</p>
-    <button onclick="stopEverything()">DEFUSE BOMB</button>
-</div>
+    <div>
+        <h2 id="display">10</h2>
+        <p id="status">System Active</p>
+        <button onclick="stopEverything()">DEFUSE BOMB</button>
+    </div>
 
 <script>
     let timeLeft = 10;
