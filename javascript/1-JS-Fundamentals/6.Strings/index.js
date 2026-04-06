@@ -19,3 +19,13 @@ console.log(str.substr(7)); // Output: "world!"
 console.log(str.substr(7, 5)); // Output: "world"
 console.log(str.substr(-6)); // Output: "world!"
 console.log(str.substr(7, -1)); // Output: ""
+
+let str2= "Hellow, world!";
+let newString = str2.indexOf("rl")//output 5 because it checks from the starting
+let newString1= str2.lastIndexOf("w")//output 8 because it checks from the ending
+let newString2= str2.lastIndexOf("w",5)//output 8 because it checks from the ending
+
+console.log(newString)
+
+let text = "The rain in SPAIN stays mainly in the plain";
+text.match(/ain/gi);    //4 [ain,AIN,ain,ain]

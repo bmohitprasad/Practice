@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center; padding: 20px; border: 2px solid #333; width: 300px;">
+    <h2 id="display">10</h2>
+    <p id="status">System Active</p>
+    <button onclick="stopEverything()">DEFUSE BOMB</button>
+</div>
+
+<script>
+    let timeLeft = 10;
+    const display = document.getElementById('display');
+    const status = document.getElementById('status');
+
+    // 1. setInterval: Update the countdown every 1000ms (1 second)
+    const countdownInterval = setInterval(function() {
+        timeLeft--;
+        display.innerText = timeLeft;
+        
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval); // Stop counting at 0
+        }
+    }, 1000);
+
+    // 2. setTimeout: Trigger the "Explosion" after exactly 10 seconds
+    const explosionTimeout = setTimeout(function() {
+        display.innerText = "💥";
+        status.innerText = "BOOM! Game Over.";
+        status.style.color = "red";
+    }, 10000);
+
+    // 3. The "Clear" Methods: Stopping the timers
+    function stopEverything() {
+        // Stops the numbers from changing
+        clearInterval(countdownInterval);
+        
+        // Stops the "BOOM" from ever happening
+        clearTimeout(explosionTimeout);
+        
+        status.innerText = "Bomb Defused safely!";
+        status.style.color = "green";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM and ClassList Lab</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        
+        /* The base card style */
+        .card {
+            padding: 20px;
+            border: 2px solid #ddd;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        /* The class added via JavaScript */
+        .highlight {
+            background-color: #fff9c4; /* Light yellow */
+            border-color: #fbc02d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        /* The class toggled via JavaScript */
+        .hidden {
+            display: none;
+        }
+/* 
+        .controls { margin-top: 10px; }
+        button { padding: 8px 15px; cursor: pointer; margin-right: 5px; }
+        #demo1, .demo2 { margin-bottom: 10px; padding: 5px; border-left: 4px solid blue; }
+        #myElement { display: block; margin-top: 10px; width: 50px; } */
+    </style>
+</head>
+<body>
+
+    <div id="demo1">Hello from div1 by id</div>
+
+    <div class="demo2">
+        Hello from div2 by class (Index 0)
+        <div>Child Row 1</div>
+        <div>Child Row 2</div>
+    </div>
+
+    <div class="demo2">
+        Hello from div2 by class (Index 1)
+        <div>Child Row 1</div>
+        <div>Child Row 2</div>
+    </div>
+
+    <p id="canChange">This paragraph will have its background changed via JavaScript.</p>
+
+    <div id="myDiv">This is <span>some</span> text content.</div>
+
+    <img id="myElement" src="https://www.w3schools.com/myl-green-off.png" alt="Lightbulb">
+
+    <hr>
+
+    <div id="myCard" class="card">
+        <h3>Interactive Card</h3>
+        <p>I am a dynamic card! Use the buttons below to manipulate my classes.</p>    
+    </div>
+
+    <div class="controls">
+        <button onclick="addClass()">Add Highlight</button>
+        <button onclick="removeClass()">Remove Highlight</button>
+        <button onclick="toggleCard()">Toggle Visibility</button>
+        <button onclick="checkStatus()">Check Status</button>
+    </div>
+
+    <script>
+        // --- 1. SELECTION METHODS ---
+        const div1 = document.getElementById('demo1');
+        const div2 = document.getElementsByClassName('demo2')[0];
+        const div3 = document.getElementsByClassName('demo2')[1];
+
+        // Corrected: Adding a string name, not the variable itself
+        div2.classList.add("js-modified");
+
+        // Accessing by CSS Selector
+        const qs = document.querySelector("#demo1");
+        const allPs = document.querySelectorAll("p");
+
+        // --- 2. CONTENT MANIPULATION ---
+        const ele = document.getElementById("myDiv");
+        console.log("HTML Content: ", ele.innerHTML); // Includes <span>
+        console.log("Text Content: ", ele.innerText);   // Text only
+
+        const mod = document.getElementById("canChange");
+        mod.style.backgroundColor = "#ffcccc"; // Soft red
+
+        // --- 3. CREATING ELEMENTS ---
+        const newPara = document.createElement("p");
+        newPara.innerText = "✨ This paragraph was created dynamically.";
+        newPara.style.color = "green";
+        document.body.appendChild(newPara);
+
+        // --- 4. ATTRIBUTE MANIPULATION ---
+        const imgElement = document.getElementById("myElement");
+        imgElement.setAttribute("title", "Dynamic Tooltip");
+        console.log("Img Source:", imgElement.getAttribute("src"));
+
+        // --- 5. CLASSLIST LOGIC ---
+        const card = document.getElementById('myCard');
+
+        function addClass() {
+            // Adds the 'highlight' class defined in CSS
+            card.classList.add('highlight');
+        }
+
+        function removeClass() {
+            // Removes the 'highlight' class
+            card.classList.remove('highlight');
+        }
+
+        function toggleCard() {
+            // Toggles the 'hidden' class (display: none)
+            card.classList.toggle('hidden');
+        }
+
+        function checkStatus() {
+            // Check if class exists
+            const isHighlighted = card.classList.contains('highlight');
+            if (isHighlighted) {
+                alert("The card IS highlighted!");
+            } else {
+                alert("The card is NOT highlighted.");
+            }
+        }
+    </script>
+</body>
+</html>
