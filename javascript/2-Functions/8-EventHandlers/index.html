@@ -3,122 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master DOM & Events Demo</title>
+    <title>The Ultimate DOM & Events Masterfile</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
-        section { border: 2px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-        .box { padding: 20px; border: 1px solid black; margin: 10px; cursor: pointer; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f4f9; }
+        section { background: white; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .box { padding: 30px; border: 2px solid #333; margin: 10px; cursor: pointer; color: #333; font-weight: bold; }
         #div1 { background-color: lightgreen; }
         #div2 { background-color: yellow; }
         #div3 { background-color: orange; }
-        .list-item { color: blue; font-weight: bold; }
-        .highlight { background-color: #ffffd0; }
-        button { padding: 10px; cursor: pointer; margin: 5px 0; }
+        .list-item { color: #2c3e50; padding: 5px; border-bottom: 1px solid #eee; }
+        .highlight { color: red; font-weight: bold; }
+        button { padding: 8px 15px; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px; }
+        button:hover { background: #2980b9; }
+        input { padding: 8px; width: 250px; margin-top: 10px; }
+        code { background: #eee; padding: 2px 4px; border-radius: 3px; }
     </style>
 </head>
 <body>
 
-    <h1>DOM & Event Mastery Dashboard</h1>
+    <h1>DOM & Events Complete Demonstration</h1>
 
-    <section id="access-section">
-        <h2 id="title">1. Access & Modify</h2>
-        <p class="list-item">This is item 1 (Class: list-item)</p>
-        <p class="list-item">This is item 2 (Class: list-item)</p>
-        <button id="modify-btn">Modify Above Content</button>
+    <!-- 1. ACCESSING & MODIFYING -->
+    <section id="access-mod-section">
+        <h2 id="title">1. Accessing & Modifying</h2>
+        <p class="list-item">Paragraph 1 (Class: list-item)</p>
+        <p class="list-item">Paragraph 2 (Class: list-item)</p>
+        <img id="myImage" src="https://via.placeholder.com/100" alt="Old Image" style="display:block; margin: 10px 0;">
+        <button id="change-btn">Run: getElementById, textContent, src</button>
     </section>
 
+    <!-- 2. CREATING & REMOVING -->
     <section id="creation-section">
-        <h2>2. Dynamic Creation & One-Time Events</h2>
-        <div id="list-container"></div>
+        <h2>2. Adding & Removing Elements</h2>
+        <button id="add-item-btn">Create New Paragraph</button>
+        <button id="remove-item-btn" style="background: #e74c3c;">Remove the Section Title</button>
+        <div id="new-elements-area"></div>
     </section>
 
+    <!-- 3. EVENT OBJECT & KEYBOARD -->
     <section>
-        <h2>3. Event Propagation</h2>
-        <p>Check the Console (F12) to see the order of alerts/logs.</p>
-        <label><input type="checkbox" id="use-capture"> Use Capturing (Trickle Down)</label>
+        <h2>3. Event Object (Keyboard)</h2>
+        <p>Type in the box to see which key is pressed:</p>
+        <input type="text" id="inputField" placeholder="Type something here...">
+        <p id="key-display">Key pressed: <span>None</span></p>
+    </section>
+
+    <!-- 4. PROPAGATION (BUBBLING vs CAPTURING) -->
+    <section>
+        <h2>4. Event Propagation</h2>
+        <p>Current Mode: <strong id="prop-mode">Bubbling (Default)</strong></p>
+        <button id="toggle-prop">Switch to Capturing</button>
         
         <div id="div1" class="box">
             Component 1 (Outer)
             <div id="div2" class="box">
                 Component 2 (Middle)
                 <div id="div3" class="box">
-                    Component 3 (Inner - Click Me!)
+                    Component 3 (Inner - Click Me)
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 5. TRAVERSING -->
+    <section id="traverse-section">
+        <h2>5. Traversing the DOM</h2>
+        <div id="parentDiv" style="background: #ecf0f1; padding: 10px;">
+            <p>Child 1</p>
+            <p id="middleChild">Child 2 (The Target)</p>
+            <p>Child 3</p>
+        </div>
+        <button id="traverse-btn">Log Parent & Siblings to Console</button>
+    </section>
+
     <script>
-        // --- 1. ACCESSING & MODIFYING ---
-        const modifyBtn = document.getElementById("modify-btn");
-        
-        modifyBtn.addEventListener("click", () => {
-            // getElementById
-            document.getElementById("title").textContent = "Content Updated!";
+        /** --- 1. ACCESSING & MODIFYING --- **/
+        const changeBtn = document.getElementById("change-btn");
+        changeBtn.addEventListener("click", () => {
+            // textContent & getElementById
+            document.getElementById("title").textContent = "DOM Successfully Modified!";
             
-            // getElementsByClassName
+            // Changing Attributes (src)
+            document.getElementById("myImage").src = "https://via.placeholder.com/100/3498db/ffffff?text=New+Image";
+            
+            // getElementsByClassName (Returns a collection)
             let items = document.getElementsByClassName("list-item");
-            items[0].style.color = "red";
+            items[0].innerHTML = "<strong>Updated via getElementsByClassName</strong>";
             
-            // querySelectorAll
-            let allParas = document.querySelectorAll(".list-item");
-            allParas.forEach(p => p.classList.add("highlight"));
+            // querySelectorAll & forEach
+            let allListItems = document.querySelectorAll(".list-item");
+            allListItems.forEach(item => item.classList.add("highlight"));
         });
 
-        // --- 2. DYNAMIC CREATION & REMOVAL ---
-        const listContainer = document.getElementById("list-container");
-        const customUI = document.createElement('ul');
 
-        for (let i = 1; i <= 5; i++) {
-            const newElement = document.createElement('li');
-            newElement.textContent = "Line " + i + " (Click to remove me)";
+        /** --- 2. ADDING & REMOVING --- **/
+        const addBtn = document.getElementById("add-item-btn");
+        const removeBtn = document.getElementById("remove-item-btn");
+
+        addBtn.addEventListener("click", () => {
+            // createElement
+            let newPara = document.createElement("p");
+            newPara.textContent = "I was created dynamically! (Click me to remove)";
+            newPara.style.cursor = "pointer";
             
-            // Demonstrating removeEventListener or simple removal
-            newElement.addEventListener('click', function handleRemove() {
-                console.log("Removing line " + i);
-                newElement.remove(); 
-            });
+            // Adding event listener to new element
+            newPara.addEventListener('click', () => newPara.remove());
             
-            customUI.appendChild(newElement);
-        }
-        listContainer.appendChild(customUI);
-
-        // --- 3. EVENT PROPAGATION (BUBBLING vs CAPTURING) ---
-        const d1 = document.querySelector("#div1");
-        const d2 = document.querySelector("#div2");
-        const d3 = document.querySelector("#div3");
-        const captureCheckbox = document.querySelector("#use-capture");
-
-        function setupEvents() {
-            // We remove old listeners first to toggle between Bubble/Capture
-            const useCapture = captureCheckbox.checked;
-            
-            // Clear and Re-add to demonstrate the difference
-            [d1, d2, d3].forEach((el, index) => {
-                // Using a named function so we can clean up if needed
-                const handler = (e) => {
-                    console.log(`Phase: ${useCapture ? 'Capturing' : 'Bubbling'} | Clicked: Component ${index + 1}`);
-                    alert(`Component ${index + 1} clicked (${useCapture ? 'Capturing' : 'Bubbling'})`);
-                };
-
-                // Remove existing to prevent stacking (standard practice)
-                el.onclick = null; 
-                
-                // The 3rd argument 'true' means Capture, 'false' (default) means Bubble
-                el.addEventListener("click", handler, useCapture);
-            });
-        }
-
-        // Initialize propagation logic
-        setupEvents();
-        captureCheckbox.addEventListener('change', () => {
-            alert("Propagation mode changed. Click the boxes again!");
-            location.reload(); // Refresh to clean event stack for demo clarity
+            // appendChild
+            document.getElementById("new-elements-area").appendChild(newPara);
         });
 
-        // --- 4. EVENT OBJECT ---
-        document.addEventListener('keydown', (event) => {
-            console.log("Last key pressed on page: " + event.key);
+        removeBtn.addEventListener("click", () => {
+            let sectionTitle = document.querySelector("#creation-section h2");
+            if (sectionTitle) sectionTitle.remove(); // .remove()
+        });
+
+
+        /** --- 3. EVENT OBJECT --- **/
+        document.getElementById("inputField").addEventListener("keyup", function(event) {
+            // event.key provides details about the event
+            document.querySelector("#key-display span").textContent = event.key;
+            console.log("Full Event Object:", event);
+        });
+
+
+        /** --- 4. PROPAGATION (BUBBLING & CAPTURING) --- **/
+        let useCapture = false;
+        const divs = [document.querySelector("#div1"), document.querySelector("#div2"), document.querySelector("#div3")];
+        const toggleBtn = document.getElementById("toggle-prop");
+
+        function attachPropagationEvents() {
+            divs.forEach((div, i) => {
+                // Using a fresh listener to demonstrate the boolean 'true/false' for capture
+                div.addEventListener("click", function(e) {
+                    alert(`Phase: ${useCapture ? "CAPTURING" : "BUBBLING"} \nClicked: Component ${i + 1}`);
+                }, useCapture);
+            });
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            useCapture = !useCapture;
+            document.getElementById("prop-mode").textContent = useCapture ? "Capturing (Trickle Down)" : "Bubbling (Bubbling Up)";
+            alert("Mode changed! Reloading events...");
+            location.reload(); // Quickest way to reset the event stack for this demo
+        });
+        
+        // Initial attach (default is bubbling)
+        attachPropagationEvents();
+
+
+        /** --- 5. TRAVERSING --- **/
+        document.getElementById("traverse-btn").addEventListener("click", () => {
+            let child = document.getElementById("middleChild");
+            
+            // parentNode
+            console.log("Parent Tag:", child.parentNode.tagName);
+            
+            // children
+            console.log("Total children of parent:", child.parentNode.children.length);
+            
+            // nextSibling / previousSibling
+            console.log("Previous Sibling Text:", child.previousElementSibling.textContent);
+            console.log("Next Sibling Text:", child.nextElementSibling.textContent);
+            
+            alert("Check the console (F12) to see the traversal results!");
         });
 
     </script>
