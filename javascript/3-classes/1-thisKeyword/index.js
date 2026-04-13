@@ -17,4 +17,4 @@ const person = {
 };
 
 
-person.greet(); // Logs "Hello, my name is John"
+person.greet();
