@@ -4,6 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import { Home } from './Components/Home'
+import { Count } from './Components/Count'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,6 +36,9 @@ function App() {
   return (
     <>
       <Home/>
+      <div className='border border-2 m-2'>
+        <Count/>
+      </div>
     </>
   )
 }
